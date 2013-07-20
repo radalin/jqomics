@@ -1,9 +1,36 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="jquery2.min.js"></script>
+    <script>
+    // FIXME: instead of frames it should turn into pages which has an image and many frames.
+    $.fn.comics = function(frames) {
+      this.frames = frames;
+      this.animate = function(frame, speed) {
+        // FIXME: there is a problem which resets the background images  
+        this.__animate_position(frame.x, frame.y, speed)
+      };
+      this.__animate_position = function(x, y, speed) {
+          var pos = this.css('background-position').split(' ');
+          this.x = pos[0] || 0,
+          this.y = pos[1] || 0;
+          $.Animation(this, {x: x, y: y}, {duration: speed})
+            .progress(function(e) {
+              console.log(e.tweens[0].now) 
+              this.css('background-position', e.tweens[0].now + 'px ' + e.tweens[1].now + 'px');
+            });
+      }
+      return this;
+    }
+    $(document).ready(function() {
+      comic = $("#comic").comics([{x:-100, y:-50}, {x:-150, y: -55}])
+    })
+    </script>
   </head>
     <body>
-        <div style="background-image:url('_MG_4722.jpg'); width: 300px; height: 300px;">
+        <div id="comic" style="background-image:url('_MG_4722.jpg'); width: 300px; height: 300px;">
         </div>
     </body>
 </html>
