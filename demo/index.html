@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="jquery2.min.js"></script>
+    <script src="../jquery.comics.js"></script>
+    <script>
+    $(document).ready(function() {
+      var xkcd = [
+        {
+          source: "xkcd/social_media.png",
+          frames: [
+            {x: 0, y: 0, width: 176, height: 263},
+            {x: -175, width: 172},
+            {x: -345, width: 170},
+            {x: -517, width: 225}
+          ]
+        },
+        {
+          source: "xkcd/enlightenment.png",
+          frames: [
+            {x: 0, y: 0, height: 268, width: 181},
+            {x: -184, width: 175},
+            {x: -361, width: 200},
+            {x: -561, width: 163},
+          ]
+        }
+      ];
+      comic = $("#comic").comics(xkcd, true);
+    })
+    </script>
+  </head>
+    <body>
+      <h1>An Xkcd Comic Book</h1>
+      <div style="text-align: center; width: 400px;">
+        <button class="page-prev-btn">Prev Page</button>
+        <button class="frame-prev-btn">Previous Frame</button>
+        <span class="page-info"></span>
+        <button class="frame-next-btn">Next Frame</button>
+        <button class="page-next-btn">Next Page</button>
+      </div>
+      <div id="comic">
+      </div>
+    </body>
+</html>
