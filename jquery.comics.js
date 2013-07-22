@@ -5,15 +5,21 @@
 // TODO: Disable buttons when on end?
 // TODO: POsitional Click Events
 */
-$.fn.comics = function(pages, withControls) {
-  this.pages = pages, this.currentPageIndex = 0, this.currentFrameIndex = 0, this.defaultTransitionSpeed = 1000;
+$.fn.comics = function(comic, withControls) {
+  this.pages = comic.pages, this.currentPageIndex = 0, this.currentFrameIndex = 0, this.defaultTransitionSpeed = 1000, this.title = comic.title, this.path = "";
+  if (!!comic.sourcePath) {
+    this.path = comic.sourcePath;
+    if (!this.path.endsWith("/")) {
+      this.path += "/";
+    }
+  }
   this.init = function() {
     var self = this;
     $.each(self.pages, function(i, el) {
       self.pages[i]["index"] = i;
       self.append(
         $("<img>")
-          .attr("src", el.source)
+          .attr("src", self.path + el.source)
           .addClass("page page-" + i)
           .css({
             "position": "relative",
@@ -29,19 +35,19 @@ $.fn.comics = function(pages, withControls) {
   };
   this.bindControls = function() {
     var self = this;
-    $(".frame-prev-btn").on("click", function() {
+    $(".frame-prev-btn").off("click").on("click", function() {
       self.previousFrame();
     });
-    $(".frame-next-btn").on("click", function() {
+    $(".frame-next-btn").off("click").on("click", function() {
       self.nextFrame();
     });
-    $(".page-prev-btn").on("click", function() {
+    $(".page-prev-btn").off("click").on("click", function() {
       self.previousPage();
     });
-    $(".page-next-btn").on("click", function() {
+    $(".page-next-btn").off("click").on("click", function() {
       self.nextPage();
     });
-    self.on("dblclick", function() {
+    self.off("dblclick").on("dblclick", function() {
       self.nextFrame()
     });
   };
