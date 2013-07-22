@@ -12,7 +12,7 @@ $.fn.comics = function(comic, withControls) {
   this.pages = comic.pages, this.currentPageIndex = 0, this.currentFrameIndex = 0, this.defaultTransitionSpeed = 1000, this.title = comic.title, this.path = "", this.totalFrames = 0;
   if (!!comic.sourcePath) {
     this.path = comic.sourcePath;
-    if (!this.path.endsWith("/")) {
+    if (this.path.indexOf("/", this.path.length - 1) !== -1) {
       this.path += "/";
     }
   }
