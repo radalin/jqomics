@@ -1,3 +1,6 @@
+/*
+Xkcd pictures are taken from the xkcd.com
+*/
 var xkcd = {
   title: "XKCD Comic Book",
   sourcePath: "xkcd/",
