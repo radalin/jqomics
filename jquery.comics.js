@@ -8,7 +8,7 @@
 // TODO: Read the comic directly from a folder (auto parse source.js file or something...)
 // TODO: Instead of total pages, show total frames...
 */
-/*! jQomics v0.2.0 | (c) 2013 Roy Simkes | github.com/radalin/jqomics */
+/*! jQomics v0.2.0 | (c) 2013 Roy Simkes | https://raw.github.com/radalin/jqomics/master/LICENSE */
 $.fn.comics = function(comic, withControls) {
   this.pages = comic.pages, this.currentPageIndex = 0, this.currentFrameIndex = 0, this.defaultTransitionSpeed = 1000, this.title = comic.title, this.path = "", this.totalFrames = 0;
   if (!!comic.sourcePath) {
